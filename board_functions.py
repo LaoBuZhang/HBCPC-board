@@ -41,8 +41,7 @@ def getHeaders(cfg):
 
 # 计算出提交时间距离开始时间的时间戳，单位为毫秒
 def transTimeToTimestamp(judgeAt,startTimestamp):
-    dt_object = board_utils.transTimeToTimestamp(judgeAt)
-    timestamp = dt_object.timestamp()
+    timestamp = board_utils.transTimeToTimestamp(judgeAt)
     return (timestamp-startTimestamp)*1000
 
 

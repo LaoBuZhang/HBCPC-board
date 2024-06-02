@@ -12,6 +12,7 @@ cfg=""
 with open('./config/cfg.json', 'r') as f:
     cfg = json.load(f)
 problemId=cfg['problemId']
+cookie=cfg['cookie']
 
 dict_ans={}
 dict_ans['PTA姓名']='xhc i love you'
@@ -24,7 +25,7 @@ headers={
     "Accept-Language":"zh-CN",
     "Cache-Control": "no-cache",
     "Content-Type": "application/json;charset=UTF-8",
-    "Cookie": "_bl_uid=29lmqwv0jww8LznhjzsRdbI3m7dX; PTASession=18a6b2d1-a90d-470a-9e9f-fd21519f2362; JSESSIONID=4E82E02AC6ED0EA76B1DE2CC09996927",
+    "Cookie": cookie,
     "Eagleeye-Pappname": "eksabfi2cn@94d5b8dc408ab8d",
     "Eagleeye-Sessionid": "3wlLtwL4j0X5772F1ymv1jt2bv0O",
     "Eagleeye-Traceid": "3f793bf1171646202705810238ab8d",
@@ -94,10 +95,14 @@ ws = wb['Sheet1']
 
 ans={}
 
+flag=False
 # 遍历行和列来读取数据
 for row in ws.iter_rows(values_only=True):
+    # 排除表格中第一行的列名行
+    if flag is not True:
+        flag=True
+        continue
     ansItem={}
-    # (172, '我竟无言以队', '唐山工业职业技术学院', '专科组', 3, '郝正辉', '孟凯', '李木泽','郝正辉 孟凯 李木泽', 'N','4078 --- 我竟无言以队', '杨继成 李睿仙', 4078, 'D11', 'HBCPC2024-D11', '唐山工业职业技术学院_我竟无言以队（专科）')
     ansItem['team_id']=dict_ans[row[15]]
     ansItem['name']=row[15]
     ansItem['organization']=row[2]
