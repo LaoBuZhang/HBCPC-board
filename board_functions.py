@@ -40,8 +40,8 @@ def getHeaders(cfg):
 
 
 # 计算出提交时间距离开始时间的时间戳，单位为毫秒
-def transTimeToTimestamp(judgeAt,startTimestamp):
-    timestamp = board_utils.transTimeToTimestamp(judgeAt)
+def transTimeToTimestamp(submitAt,startTimestamp):
+    timestamp = board_utils.transTimeToTimestamp(submitAt)
     return (timestamp-startTimestamp)*1000
 
 
@@ -85,7 +85,7 @@ def transSubmit(submitList,problemList,defrost):
         submitRecord={}
         submitRecord['team_id']=submitList[i]['userId']
         submitRecord['problem_id']=ord(problemList[submitList[i]['problemSetProblemId']]['label'])-ord('A')
-        submitRecord['timestamp']=transTimeToTimestamp(submitList[i]['judgeAt'],startTimestamp/1000)
+        submitRecord['timestamp']=transTimeToTimestamp(submitList[i]['submitAt'],startTimestamp/1000)
         submitRecord['language']=transComplierToLanguage(submitList[i]['compiler'])
         submitRecord['submission_id']=submitList[i]['id']
 
